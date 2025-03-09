@@ -1,35 +1,53 @@
+PATH
+  remote: .
+  specs:
+    wasm_drb (0.1.0)
+      js (~> 2.7)
+      ruby_wasm (~> 2.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    base64 (0.2.0)
-    drb-websocket (0.5.1)
-      faye-websocket
-      puma
-      rack (~> 3.0)
-      rackup
-    eventmachine (1.2.7)
-    faye-websocket (0.11.3)
-      eventmachine (>= 0.12.0)
-      websocket-driver (>= 0.5.1)
-    nio4r (2.7.4)
-    puma (6.6.0)
-      nio4r (~> 2.0)
-    rack (3.1.11)
-    rackup (2.2.1)
-      rack (>= 3)
-    websocket-driver (0.7.7)
-      base64
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.5)
+    date (3.4.1)
+    io-console (0.8.0)
+    irb (1.15.1)
+      pp (>= 0.6.0)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
+    js (2.7.1)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
+    psych (5.2.3)
+      date
+      stringio
+    rake (13.2.1)
+    rdoc (6.12.0)
+      psych (>= 4.0.0)
+    reline (0.6.0)
+      io-console (~> 0.5)
+    ruby_wasm (2.7.1)
+    ruby_wasm (2.7.1-aarch64-linux)
+    ruby_wasm (2.7.1-aarch64-linux-musl)
+    ruby_wasm (2.7.1-arm64-darwin)
+    ruby_wasm (2.7.1-x86_64-darwin)
+    ruby_wasm (2.7.1-x86_64-linux)
+    ruby_wasm (2.7.1-x86_64-linux-musl)
+    stringio (3.1.5)
 
 PLATFORMS
-  arm64-darwin-23
+  aarch64-linux
+  aarch64-linux-musl
+  arm64-darwin
   ruby
+  x86_64-darwin
+  x86_64-linux
+  x86_64-linux-musl
 
 DEPENDENCIES
-  drb-websocket
-  puma
-  rackup
+  irb
+  rake (~> 13.0)
+  wasm_drb!
 
 BUNDLED WITH
-   2.5.22
+   2.6.5
