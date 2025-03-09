@@ -18,6 +18,10 @@ class SampleFactory
   def self.get
     DRbObject.new(SampleObject.new)
   end
+
+  def self.hello
+    'hello'
+  end
 end
 
 DRb::WebSocket::RackApp.config.use_rack = true

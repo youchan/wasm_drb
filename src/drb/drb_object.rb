@@ -67,7 +67,6 @@ module DRb
       end
     end
 
-
     class DRbPromise
       class WrapedResolve
         attr_reader :data
@@ -78,7 +77,6 @@ module DRb
 
         def apply(data)
           @data = data
-          puts "###### apply"
           @resolve.apply
         end
       end
@@ -89,7 +87,6 @@ module DRb
         end
 
         def wraped_resolve(resolve)
-          puts "wraped_resolve"
           @wraped_resolve = WrapedResolve.new(resolve)
         end
 
@@ -122,7 +119,6 @@ module DRb
       end
     end
 
-
     def method_missing(msg_id, *a, &b)
       DRbPromise.new do |resolve|
         DRbConn.open(@uri) do |conn|
@@ -135,6 +131,7 @@ module DRb
               bt = self.class.prepare_backtrace(@uri, result)
               result.set_backtrace(bt + caller)
               resolve.apply result
+              conn.close
             end
           end
         end

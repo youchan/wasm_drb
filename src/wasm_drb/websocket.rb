@@ -55,7 +55,6 @@ module WasmDRb
     end
 
     def send mesg
-      puts "############# WasmDRb::WebSocket.send: #{mesg.class}"
       @js_ws.call(:send, mesg.buffer)
     end
 

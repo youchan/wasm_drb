@@ -12,9 +12,7 @@ module DRb
         @handlers = {}
 
         ws.onmessage do |event|
-          puts "############# on message"
           message_data = event.data.to_s
-          puts message_data
           sender_id = message_data.slice(0, 36)
           message = message_data.slice(36, message_data.length - 36)
           @handlers.delete(sender_id).call(message)

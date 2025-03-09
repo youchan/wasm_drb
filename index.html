@@ -1,7 +1,13 @@
 <html>
-  <script src="dist/browser.script.iife.js"></script>
-  <script type="text/ruby">
-    require_relative 'src/hello'
+  <script type="module">
+    import { DefaultRubyVM } from "https://cdn.jsdelivr.net/npm/@ruby/wasm-wasi@2.7.1/dist/browser/+esm";
+    const response = await fetch("/dist/app.wasm");
+    const module = await WebAssembly.compileStreaming(response);
+    const { vm } = await DefaultRubyVM(module);
+
+    vm.evalAsync(`
+      require_relative 'src/hello'
+    `);
   </script>
 </html>
 

@@ -1,34 +1,16 @@
 module DRb
   class DRbConn
     POOL_SIZE = 16
-    @pool = []
+    @pool = {}
 
     def self.open(remote_uri)
-      begin
-        conn = nil
-
-        @pool = @pool.each_with_object([]) do |c, new_pool|
-          if conn.nil? and c.uri == remote_uri
-            conn = c if c.alive?
-          else
-            new_pool.push c
-          end
-        end
-
-        conn = self.new(remote_uri) unless conn
-        succ, result = yield(conn)
-        return succ, result
-
-      ensure
-        if conn
-          if succ
-            @pool.unshift(conn)
-            @pool.pop.close while @pool.size > POOL_SIZE
-          else
-            conn.close
-          end
-        end
+      conn = @pool[remote_uri]
+      unless conn&.alive?
+        conn = self.new(remote_uri)
+        @pool[remote_uri] = conn
       end
+
+      yield(conn)
     end
 
     def initialize(remote_uri)

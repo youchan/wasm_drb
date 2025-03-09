@@ -5,15 +5,16 @@ GEM
     drb-websocket (0.5.1)
       faye-websocket
       puma
-      rack
+      rack (~> 3.0)
+      rackup
     eventmachine (1.2.7)
     faye-websocket (0.11.3)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     nio4r (2.7.4)
-    puma (6.5.0)
+    puma (6.6.0)
       nio4r (~> 2.0)
-    rack (3.1.8)
+    rack (3.1.11)
     rackup (2.2.1)
       rack (>= 3)
     websocket-driver (0.7.7)
