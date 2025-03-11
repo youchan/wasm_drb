@@ -1,2 +1,5 @@
 build/
 rubies/
+
+Gemfile.lock
+ruby.wasm
