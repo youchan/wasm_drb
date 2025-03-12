@@ -125,9 +125,8 @@ module DRb
           server_side = ServerSide.new(stream, @config, uri)
           @accepter.call server_side
 
-          send_data = sender_id.bytes.each_slice(2).map(&:first)
-          send_data += server_side.reply.bytes.each_slice(2).map(&:first)
-          @ws.send(WasmDRb::ArrayBuffer.new(send_data))
+          send_data = WasmDRb::ArrayBuffer.new(sender_id.bytes + server_side.reply.bytes)
+          @ws.send(send_data)
         end
       end
 

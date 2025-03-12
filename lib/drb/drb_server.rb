@@ -22,7 +22,6 @@ module DRb
           print_error(e)
         ensure
           client.close unless succ
-          break unless succ
         end
       end
     end
