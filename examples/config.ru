@@ -2,25 +2,30 @@ require 'drb/drb'
 require 'drb/websocket'
 
 class SampleObject
-  def test
-    "ACK!"
+  def initialize
+    @value = 0
+    @callbacks = []
   end
 
-  def set_callback(&callback)
-    5.times do
-      callback.call
-      sleep 1
+  def hello
+    "Hello, world!"
+  end
+
+  def add_callback(&callback)
+    @callbacks << callback
+  end
+
+  def increment
+    @value += 1
+    @callbacks.each do |callback|
+      callback.call "value: #{@value}"
     end
   end
 end
 
 class SampleFactory
   def self.get
-    DRbObject.new(SampleObject.new)
-  end
-
-  def self.hello
-    'hello'
+    @obj ||= DRbObject.new(SampleObject.new)
   end
 end
 

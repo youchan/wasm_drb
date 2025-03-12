@@ -3,3 +3,4 @@ rubies/
 
 Gemfile.lock
 ruby.wasm
+app.wasm
