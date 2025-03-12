@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in wasm-drb.gemspec
+# Specify your gem's dependencies in wasm_drb.gemspec
 gemspec
 
 gem "irb"
