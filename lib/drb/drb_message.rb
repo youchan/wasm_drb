@@ -7,7 +7,7 @@ module DRb
     end
 
     def dump(obj, error=false)
-      obj = make_proxy(obj, error) if obj.kind_of? DRbUndumped
+      obj = make_proxy(obj, error) if obj.is_a? DRbUndumped
       begin
         str = Marshal::dump(obj)
       rescue

@@ -1,3 +1,4 @@
+require 'securerandom'
 require_relative '../wasm_drb/websocket'
 require_relative 'drb_message'
 
@@ -35,7 +36,7 @@ module DRb
       end
 
       def send(data, &block)
-        sender_id = JS.global[:crypto].randomUUID().to_s
+        sender_id = SecureRandom.uuid
         @handlers[sender_id] = block
         byte_data = sender_id.bytes + data.bytes
 
@@ -78,16 +79,16 @@ module DRb
     end
 
     def self.open(uri, config)
-      unless uri =~ /^ws:\/\/(.*?):(\d+)(\/(.*))?$/
-        raise(DRbBadScheme, uri) unless uri =~ /^ws:/
+      unless uri =~ /^wss?:\/\/(.*?)(:(\d+))?(\/(.*))?$/
+        raise(DRbBadScheme, uri) unless uri =~ /^wss?:/
         raise(DRbBadURI, 'can\'t parse uri:' + uri)
       end
       ClientSide.new(uri, config)
     end
 
     def self.open_server(uri, config)
-      unless uri =~ /^ws:\/\/(.*?):(\d+)(\/(.*))?$/
-        raise(DRbBadScheme, uri) unless uri =~ /^ws:/
+      unless uri =~ /^wss?:\/\/(.*?)(:(\d+))?(\/(.*))?$/
+        raise(DRbBadScheme, uri) unless uri =~ /^wss?:/
         raise(DRbBadURI, 'can\'t parse uri:' + uri)
       end
 
