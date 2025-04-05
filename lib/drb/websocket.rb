@@ -99,7 +99,7 @@ module DRb
       attr_reader :uri
 
       def initialize(uri, config)
-        uuid = JS.global[:crypto].randomUUID()
+        uuid = SecureRandom.uuid
         @uri = "#{uri}/#{uuid}"
         @config = config
         reconnect
