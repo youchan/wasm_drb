@@ -3,7 +3,7 @@ require_relative '../wasm_drb/websocket'
 require_relative 'drb_message'
 
 module DRb
-  module WebSocket
+  module DRbWebSocket
     class SocketPool
       attr_reader :uri, :ws
 

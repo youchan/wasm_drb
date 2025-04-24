@@ -1,6 +1,6 @@
 module DRb
   module DRbProtocol
-    @protocol = [DRb::WebSocket] # default
+    @protocol = [DRb::DRbWebSocket] # default
   end
 
   module DRbProtocol
